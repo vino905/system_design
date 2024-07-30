@@ -53,7 +53,7 @@ Without the Builder Design Pattern, creating an object with numerous optional pa
 
 ## Using the Builder Design Pattern
 
-The Builder Design Pattern addresses these issues by providing a flexible and readable way to create objects. Below is a detailed explanation of the example implementation.
+The Builder Design Pattern addresses these issues by providing a flexible and readable way to create objects. Example code is located in a `factory` directory:
 
 
 
