@@ -1,0 +1,22 @@
+@startuml
+abstract class OrderProcessor {
+    +processOrder() : void
+    -selectItems() : void
+    #makePayment() : void
+    #shipItems() : void
+    #generateInvoice() : void
+}
+
+class CreditCardOrderProcessor {
+    +makePayment() : void
+    +shipItems() : void
+}
+
+class UpiOrderProcessor {
+    +makePayment() : void
+    +shipItems() : void
+}
+
+OrderProcessor <|-- CreditCardOrderProcessor
+OrderProcessor <|-- UpiOrderProcessor
+@enduml
