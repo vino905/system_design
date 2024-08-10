@@ -1,0 +1,28 @@
+@startuml
+abstract class LogProcessor {
+    +log(int logLevel, String message)
+    #nextLogProcessor : LogProcessor
+}
+
+class InfoLogProcessor {
+    +log(int logLevel, String message)
+}
+
+class DebugLogProcessor {
+    +log(int logLevel, String message)
+}
+
+class ErrorLogProcessor {
+    +log(int logLevel, String message)
+}
+
+LogProcessor <|-- InfoLogProcessor
+LogProcessor <|-- DebugLogProcessor
+LogProcessor <|-- ErrorLogProcessor
+
+class Test {
+    +main(String[] args)
+}
+
+Test --> LogProcessor
+@enduml

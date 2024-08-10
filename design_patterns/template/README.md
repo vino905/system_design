@@ -5,7 +5,7 @@ subclasses. It lets subclasses redefine certain steps of an algorithm without ch
 
 ## Order Processing System
 
-Consider an `OrderProcessor` system where different types of orders (e.g., Credit Card or PayPal payments) need to be
+Consider an `OrderProcessor` system where different types of orders (e.g., Credit Card or UPI payments) need to be
 processed. The general process involves selecting items, making payment, generating an invoice, and shipping the items.
 The process remains the same for all orders, but specific steps, like payment method and shipping, vary.
 
@@ -28,6 +28,6 @@ steps involved in processing an order but allows subclasses to customize specifi
 - `CreditCardOrderProcessor`: Implements `makePayment()` and `shipItems()` specific to Credit Card payments.
 - `UpiOrderProcessor`: Implements `makePayment()` and `shipItems()` specific to UPI payments.
 
-# UML Diagram
+# Class Diagram
 
 ![template_uml.png](template_uml.png)
