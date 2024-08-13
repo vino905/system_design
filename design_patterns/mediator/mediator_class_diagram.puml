@@ -1,0 +1,31 @@
+@startuml
+interface AuctionMediator {
+    + addBidder(colleague: Colleague)
+    + placeBid(colleague: Colleague, bidAmount: int)
+}
+
+interface Colleague {
+    + placeBid(bidAmount: int)
+    + receiveBidNotification(bidAmount: int)
+    + getName(): String
+}
+
+class Auction implements AuctionMediator {
+    + addBidder(colleague: Colleague)
+    + placeBid(colleague: Colleague, bidAmount: int)
+    - List<Colleague> colleagues
+}
+
+class Bidder implements Colleague {
+    + placeBid(bidAmount: int)
+    + receiveBidNotification(bidAmount: int)
+    + getName(): String
+    - AuctionMediator auctionMediator
+    - String name
+}
+
+Bidder --> AuctionMediator
+Auction --|> AuctionMediator
+Colleague <|.. Bidder
+
+@enduml
