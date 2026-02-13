@@ -1,0 +1,49 @@
+@startuml
+
+interface StocksObservable {
+    + add(notificationAlertObserver: NotificationAlertObserver)
+    + remove(notificationAlertObserver: NotificationAlertObserver)
+    + notifySubscribers()
+    + setStocksCount(stockCount: int)
+    + getStocksCount(): int
+}
+
+class IphoneStocksObservableImpl {
+    - notificationAlertObserverList: List<NotificationAlertObserver>
+    - stockCount: int
+    + add(notificationAlertObserver: NotificationAlertObserver)
+    + remove(notificationAlertObserver: NotificationAlertObserver)
+    + notifySubscribers()
+    + setStocksCount(newStockCount: int)
+    + getStocksCount(): int
+}
+
+interface NotificationAlertObserver {
+    + upadate()
+}
+
+class EmailAlertObserveImpl {
+    - emailId: String
+    - stocksObservable: StocksObservable
+    + EmailAlertObserveImpl(emailId: String, stocksObservable: StocksObservable)
+    + upadate()
+    - sendMail(emailId: String, message: String)
+}
+
+class PhoneAlertObserverImpl {
+    - phoneNo: String
+    - stocksObservable: StocksObservable
+    + PhoneAlertObserverImpl(stocksObservable: StocksObservable, phoneNo: String)
+    + upadate()
+    - sendAlertOnPhone(phoneNo: String)
+}
+
+StocksObservable <|.. IphoneStocksObservableImpl
+NotificationAlertObserver <|.. EmailAlertObserveImpl
+NotificationAlertObserver <|.. PhoneAlertObserverImpl
+
+IphoneStocksObservableImpl --> NotificationAlertObserver : notifies
+EmailAlertObserveImpl --> StocksObservable
+PhoneAlertObserverImpl --> StocksObservable
+
+@enduml
