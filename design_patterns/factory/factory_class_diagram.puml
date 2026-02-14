@@ -1,0 +1,34 @@
+@startuml
+
+interface Shape {
+    +draw() : void
+}
+
+class Circle {
+    +draw() : void
+}
+
+class Rectangle {
+    +draw() : void
+}
+
+class ShapFactory {
+    +getShape(shape : String) : Shape
+}
+
+class Test {
+    +main(args : String[]) : void
+}
+
+' Implementation relationships
+Shape <|.. Circle : IS-A
+Shape <|.. Rectangle : IS-A
+
+' Factory creates objects
+ShapFactory --> Shape : HAS-A
+
+' Client uses Factory
+Test --> ShapFactory : HAS-A
+
+
+@enduml

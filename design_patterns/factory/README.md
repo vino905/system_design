@@ -10,8 +10,8 @@ The factory design pattern is used when we have a superclass with multiple sub-c
 
 The example consists of a `Shape` interface with two implementing classes, `Circle` and `Rectangle`. A `ShapeFactory` class is used to create objects of these concrete classes based on given information.
 
-
-
+## Class Diagram
+![factory_class_diagram.png](factory_class_diagram.png)
 
 
 
