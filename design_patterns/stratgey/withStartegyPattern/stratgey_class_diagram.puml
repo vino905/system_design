@@ -1,0 +1,25 @@
+@startuml
+
+interface DriveStrategy {
+    + drive()
+}
+
+class SpecialStrategy {
+    + drive("Special")
+}
+
+class NormalStrategy{
+    + drive("Normal")
+}
+
+
+class Vehicle {
+    - strategy: DriveStrategy
+    + drive()
+}
+
+DriveStrategy <|.. NormalStrategy : IS-A
+DriveStrategy <|.. SpecialStrategy : IS-A
+Vehicle --> DriveStrategy : HAS-A
+
+@enduml
