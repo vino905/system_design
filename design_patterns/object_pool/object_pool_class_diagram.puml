@@ -1,0 +1,31 @@
+@startuml
+title Object Pool Design Pattern - Class Diagram
+
+class DBConnectionPoolManager {
+    - freeeConnectionInPool : List<DBConnection>
+    - connectionInUse : List<DBConnection>
+    - INITIAL_POOL_SIZE : int
+    - MAX_POOL_SIZE : int
+    - dbConnectionPoolManager : DBConnectionPoolManager
+    --
+    - DBConnectionPoolManager()
+    + getDbConnectionPoolManagerInstance() : DBConnectionPoolManager
+    + getDbConnection() : DBConnection
+    + releaseDbConnection(connection : DBConnection) : void
+}
+
+class DBConnection {
+    - mySqlConnection : Connection
+    --
+    - DBConnection()
+}
+
+class Test {
+    + main(args : String[]) : void
+}
+
+DBConnectionPoolManager *-- DBConnection
+Test --> DBConnectionPoolManager
+Test --> DBConnection
+
+@enduml
