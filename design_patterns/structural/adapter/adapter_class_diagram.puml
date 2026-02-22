@@ -1,0 +1,37 @@
+@startuml
+
+interface PaymentGateway {
+    +pay(orderId : String, amount : double) : void
+}
+
+class PayUGateway {
+    +pay(orderId : String, amount : double) : void
+}
+
+class RazorpayAPI {
+    +makePayment(invoiceId : String, amountInRupees : double) : void
+}
+
+class RazorPayAdapter {
+    -razorpayAPI : RazorpayAPI
+    +RazorPayAdapter()
+    +pay(orderId : String, amount : double) : void
+}
+
+class CheckoutService {
+    -paymentGateway : PaymentGateway
+    +CheckoutService(paymentGateway : PaymentGateway)
+    +checkout(orderId : String, amount : double) : void
+}
+
+class Test {
+    +main(args : String[]) : void
+}
+
+PaymentGateway <|.. PayUGateway
+PaymentGateway <|.. RazorPayAdapter
+RazorPayAdapter --> RazorpayAPI : adapts
+CheckoutService --> PaymentGateway : uses
+Test --> CheckoutService : creates
+
+@enduml
