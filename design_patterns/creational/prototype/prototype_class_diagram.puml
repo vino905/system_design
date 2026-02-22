@@ -1,0 +1,32 @@
+@startuml
+interface EmailTemplate {
+    +clone() : EmailTemplate
+    +setContent(content : String) : void
+    +send(to : String) : void
+}
+
+class WelcomeEmail {
+    -subject : String
+    -content : String
+    +WelcomeEmail()
+    +clone() : EmailTemplate
+    +setContent(content : String) : void
+    +send(to : String) : void
+}
+
+class EmailTemplateRegistry {
+    -templates : Map<String, EmailTemplate>
+    +getEmailTemplate(type : String) : EmailTemplate
+}
+
+class Test {
+    +main(args : String[]) : void
+}
+
+EmailTemplate <|.. WelcomeEmail
+EmailTemplateRegistry --> EmailTemplate : stores
+Test --> EmailTemplateRegistry : uses
+Test --> EmailTemplate : creates clones
+
+
+@enduml
