@@ -1,0 +1,38 @@
+@startuml
+title Decorator Design Pattern - Class Diagram
+
+abstract class BasePizza {
+    +cost() : int
+}
+
+class Farmhouse {
+    +cost() : int
+}
+
+class VegDelight {
+    +cost() : int
+}
+
+abstract class ToppingDecorator {
+}
+
+class ExtraCheeseTopping {
+    -pizza : BasePizza
+    +cost() : int
+}
+
+class CornTopping {
+    -piizza : BasePizza
+    +cost() : int
+}
+
+BasePizza <|-- Farmhouse
+BasePizza <|-- VegDelight
+BasePizza <|-- ToppingDecorator
+ToppingDecorator <|-- ExtraCheeseTopping
+ToppingDecorator <|-- CornTopping
+
+ExtraCheeseTopping *-- BasePizza
+CornTopping *-- BasePizza
+
+@enduml
