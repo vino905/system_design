@@ -1,0 +1,32 @@
+@startuml
+
+interface Document {
+    +display() : void
+    +edit() : void
+}
+
+class RealDocument {
+    -content : String
+    +RealDocument(content : String)
+    +display() : void
+    +edit() : void
+}
+
+class ProxyDocument {
+    -realDocument : RealDocument
+    -userRole : String
+    +ProxyDocument(content : String, userRole : String)
+    +display() : void
+    +edit() : void
+}
+
+class Test {
+    +main(args : String[]) : void
+}
+
+Document <|.. RealDocument
+Document <|.. ProxyDocument
+ProxyDocument --> RealDocument
+Test --> Document
+
+@enduml
